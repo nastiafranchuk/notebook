@@ -1,0 +1,88 @@
+import datetime
+
+last_id = 0
+
+class Note:
+    '''
+    Represent a note in the notebook. Match against a atring in searches and store tags for each note.
+    '''
+    def __init__(self, memo, tags=''):
+        '''
+        Initialize a note with memo and optional space-separated tags. Automatically set the note`s creation\
+        date and a unique id.
+        '''
+        self.memo = memo
+        self.tags = tags
+        self.creation_date = datetime.date.today()
+        global last_id
+        last_id += 1
+        self.id = last_id
+
+    def match(self, filterr):
+        '''
+        Determine if this note matches the filter text. Return True if it matches , \
+        False otherwise.
+
+        Search is case sensitive and matches both text and tags.
+        '''
+        return filterr in self.memo or filterr in self.tags
+
+
+class Notebook:
+    '''
+    Represent a collection of notes that can be tagged, modified and searched
+    '''
+    def __init__(self):
+        '''
+        Initialize a notebook with an empty list.
+        '''
+        self.notes = []
+
+    def new_note(self, memo, tags=''):
+        '''
+        Create a new note and add it to the list.
+        '''
+        self.notes.append(Note(memo, tags))
+
+    def modify_memo(self, note_id, memo):
+        '''
+        Find the note with the given id and change its memo to the given value.
+        '''
+        for note in self.notes:
+            if note.id == note.id:
+                note.memo = memo
+                break
+
+    def modify_tags(self, note_id, tags):
+        '''
+        Find the note with the given id and change its tags to the given value
+        '''
+        for note in self.notes:
+            if note.id == note.id:
+                note.tags = tags
+                break
+
+    def search(self, filterr):
+        '''
+        Find all notes that match the given filter string.
+        '''
+        return [note for note in self.notes if note.match(filterr)]
+
+n = notebook.Notebook()
+n.new_note('hello world')
+n.new_note('hello again')
+
+print(n)
+print(dir(n))
+print(n.__dict__)
+print(type(n))
+print(id(n))
+print(isinstance(n, str))
+print(isinstance(n, int))
+print(isinstance(n, object))
+print(dir(notebook))
+print(hasattr(n, 'notes'))
+print(hasattr(n, 'hello'))
+print(n.__init__)
+print(n.__init__())
+print(n.__str__())
